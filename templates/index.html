@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Travel Planner</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="logo"><i class="fas fa-plane"></i> TourPlanner</a>
+    <div class="nav-links">
+      <a href="#home"><i class="fas fa-home"></i> Home</a>
+      <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#suggestion"><i class="fas fa-lightbulb"></i> Suggestions</a>
+      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero / Home Section -->
+  <section class="home" id="home">
+    <h1>🏞️ Welcome to AI Travel Planner 🏝️</h1>
+    <section>
+        <form action="/recommend" method="POST">
+          <div>
+            <label>
+              <input type="radio" name="search_type" value="state_rating" checked onclick="toggleSearchOptions()"> Search by State & Rating
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="search_type" value="category_geo" onclick="toggleSearchOptions()"> Search by Category & Geo-Type
+            </label>
+          </div>
+    
+          <div id="state-rating-option" class="search-option">
+            <h3>State & Rating Search</h3>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+            <label for="rating">Minimum Rating (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" value="4.0" required>
+          </div>
+    
+          <div id="category-geo-option" class="search-option hidden">
+            <h3>Category & Geo-Type Search</h3>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+              <option value="Mountain">Mountain</option>
+              <option value="Sea">Sea</option>
+              <option value="Historical">Historical</option>
+              <option value="Holy">Holy</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Cultural">Cultural</option>
+              <option value="Natural">Natural</option>
+              <option value="Desert">Desert</option>
+            </select>
+    
+            <label for="geo_type">Geo Type:</label>
+            <select id="geo_type" name="geo_type">
+              <option value="Mountainous">Mountainous</option>
+              <option value="Desert">Desert</option>
+              <option value="Coastal">Coastal</option>
+              <option value="Plains">Plains</option>
+              <option value="Riverine">Riverine</option>
+              <option value="Lake">Lake</option>
+              <option value="Forest">Forest</option>
+              <option value="Wetland">Wetland</option>
+              <option value="Valley">Valley</option>
+              <option value="Waterfalls">Waterfalls</option>
+              <option value="Plateau">Plateau</option>
+            </select>
+          </div>
+    
+          <button type="submit">Find Recommendations</button>
+        </form>
+      </section>
+    <div class="info-container">
+      <div class="info-box">
+        <img src="tour1.jpg" alt="Location">
+      </div>
+      <div class="info-box">
+        <h2>Explore Beautiful Places</h2>
+        <p>Discover the world's most amazing destinations with personalized recommendations, travel tips, and essential guides.</p>
+        <ul style="list-style: none; padding: 0;">
+          <li>✅ Best Time to Visit: October - March</li>
+          <li>🏞️ Scenic Landscapes & Adventure Trails</li>
+          <li>🍽️ Famous Food: Local Cuisine & Street Food</li>
+        </ul>
+        <a href="templates/Suggestion2.html" class="explore-btn">Explore More</a>
+        <div style="margin-top: 15px;">
+          ⭐⭐⭐⭐⭐ <span style="font-size: 14px;">(4.9/5 based on 250 reviews)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Form Section -->
+  
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>TourPlanner is your ultimate travel companion. Our mission is to help you discover hidden gems, explore famous landmarks, and experience unique cultures. We offer personalized recommendations, travel guides, and expert tips to make your journey unforgettable.</p>
+    </div>
+    <img src="tour2.png" alt="About Us" style="max-width: 100%; border-radius: 10px;">
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Why Choose Us</h2>
+    <div class="features-container">
+      <div class="feature-card">
+        <h3>✈️ Travel Guides</h3>
+        <p>Personalized travel tips and itineraries.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌟 Hidden Gems</h3>
+        <p>Explore less-known, breathtaking locations.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🍲 Local Cuisine</h3>
+        <p>Discover famous local foods and restaurants.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛏️ Accommodation Tips</h3>
+        <p>Suggest hotels, hostels, and stays.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Suggestions Section -->
+  <section id="suggestion">
+    <h2>Suggestions</h2>
+    <form class="suggestion-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="text" placeholder="Suggested Place" required />
+      <select>
+        <option value="">Select Category</option>
+        <option value="Hidden Gem">Hidden Gem</option>
+        <option value="Local Cuisine">Local Cuisine</option>
+        <option value="Travel Guide">Travel Guide</option>
+        <option value="Accommodation">Accommodation</option>
+      </select>
+      <textarea placeholder="Describe your suggestion" rows="4" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-card">
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <div>
+        <h3>📍 Address</h3>
+        <p>123 Travel Lane, Wanderlust City</p>
+      </div>
+      <div>
+        <h3>📞 Phone</h3>
+        <p>+1 234 567 890</p>
+      </div>
+      <div>
+        <h3>📧 Email</h3>
+        <p>contact@tourplanner.com</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 TourPlanner. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <script>
+    function toggleSearchOptions() {
+      const stateRatingOption = document.getElementById('state-rating-option');
+      const categoryGeoOption = document.getElementById('category-geo-option');
+      const searchType = document.querySelector('input[name="search_type"]:checked').value;
+
+      if (searchType === 'state_rating') {
+        stateRatingOption.classList.remove('hidden');
+        categoryGeoOption.classList.add('hidden');
+      } else {
+        stateRatingOption.classList.add('hidden');
+        categoryGeoOption.classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Based Travel Planner</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <!-- Add in <head> of your HTML -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+  <style>
+    .search-option {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .hidden {
+      display: none;
+    }
+    .integrated-search h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    /* .integrated-search input,
+    .integrated-search select,
+    .integrated-search button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    } */
+    /* .integrated-search button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .integrated-search button:hover {
+      background-color: #2980b9;
+    } */
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#" class="logo"><i class="fas fa-plane"></i>RouteMinds</a>
+  <div class="nav-links">
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="#review"><i class="fas fa-lightbulb"></i> Reviews</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact us</a>
+  </div>
+</nav>
+
+<section class="home" id="home">
+  <h1 id="topic1">Find Your Next Destination</h1>
+  <!-- <div class="search-box">
+    <input type="text" placeholder="Search places to visit..." />
+    <button>Search</button>
+  </div> -->
+  
+
+  <!-- Integrated Section from index2.html -->
+  <!-- <div class="integrated-search">
+    <h2>🏞 Welcome to AI Travel Planner 🏝</h2>
+    <form action="/recommend" method="POST">
+      <div>
+        <label>
+          <input type="radio" name="search_type" value="state_rating" checked onclick="toggleSearchOptions()" />
+          Search by State & Rating
+        </label><br />
+        <label>
+          <input type="radio" name="search_type" value="category_geo" onclick="toggleSearchOptions()" />
+          Search by Category & Geo-Type
+        </label>
+      </div>
+
+      <div id="state-rating-option" class="search-option">
+        <h3>State & Rating Search</h3>
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required />
+
+        <label for="rating">Minimum Rating (1-5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" value="4.0" required />
+      </div>
+
+      <div id="category-geo-option" class="search-option hidden">
+        <h3>Category & Geo-Type Search</h3>
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <option value="Mountain">Mountain</option>
+          <option value="Sea">Sea</option>
+          <option value="Historical">Historical</option>
+          <option value="Holy">Holy</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Natural">Natural</option>
+          <option value="Desert">Desert</option>
+        </select>
+
+        <label for="geo_type">Geo Type:</label>
+        <select id="geo_type" name="geo_type">
+          <option value="Mountainous">Mountainous</option>
+          <option value="Desert">Desert</option>
+          <option value="Coastal">Coastal</option>
+          <option value="Plains">Plains</option>
+          <option value="Riverine">Riverine</option>
+          <option value="Lake">Lake</option>
+          <option value="Forest">Forest</option>
+          <option value="Wetland">Wetland</option>
+          <option value="Valley">Valley</option>
+          <option value="Waterfalls">Waterfalls</option>
+          <option value="Plateau">Plateau</option>
+        </select>
+      </div>
+
+      <button type="submit">Find Recommendations</button>
+    </form>
+  </div> -->
+
+  <div class="integrated-search">
+    <form action="/recommend" method="POST">
+      <h2>🔍 Smart Search for Your Perfect Destination</h2>
+  
+      <div class="search-type">
+        <label>
+          <input type="radio" name="search_type" value="state_rating" checked onclick="toggleSearchOptions()" />
+          <span>Search by <strong>State & Rating</strong></span>
+        </label>
+        <label>
+          <input type="radio" name="search_type" value="category_geo" onclick="toggleSearchOptions()" />
+          <span>Search by <strong>Category & Geo-Type</strong></span>
+        </label>
+      </div>
+  
+      <div id="state-rating-option" class="search-option">
+        <h3>📍 State & Rating Search</h3>
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" placeholder="e.g., Kerala" required />
+  
+        <label for="rating">Minimum Rating</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" value="4.0" required />
+      </div>
+  
+      <div id="category-geo-option" class="search-option-category hidden">
+        <h3 style="color:blue;font:15px">🌄 Category & Geo-Type Search</h3>
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="Mountain">Mountain</option>
+          <option value="Sea">Sea</option>
+          <option value="Historical">Historical</option>
+          <option value="Holy">Holy</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Natural">Natural</option>
+          <option value="Desert">Desert</option>
+        </select>
+  
+        <label for="geo_type">Geo Type</label>
+        <select id="geo_type" name="geo_type">
+          <option value="Mountainous">Mountainous</option>
+          <option value="Desert">Desert</option>
+          <option value="Coastal">Coastal</option>
+          <option value="Plains">Plains</option>
+          <option value="Riverine">Riverine</option>
+          <option value="Lake">Lake</option>
+          <option value="Forest">Forest</option>
+          <option value="Wetland">Wetland</option>
+          <option value="Valley">Valley</option>
+          <option value="Waterfalls">Waterfalls</option>
+          <option value="Plateau">Plateau</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="submit-btn">Find Recommendations</button>
+    </form>
+  </div>
+  
+
+  <div class="info-container" id="about">
+    <div class="info-box">
+      <img src="/static/css/tour1.jpg" alt="Location" />
+    </div>
+    <div class="info-box">
+      <h2>Explore Beautiful Places</h2>
+      <p>Discover the world's most amazing destinations with personalized recommendations, travel tips, and essential guides.</p>
+      <ul style="list-style: none; padding: 0;">
+        <li>✅ Best Time to Visit: October - March</li>
+        <li>🏞 Scenic Landscapes & Adventure Trails</li>
+        <li>🍽 Famous Food: Local Cuisine & Street Food</li>
+      </ul>
+      <a href="{{ url_for('suggestion2') }}" class="explore-btn">Explore More</a>
+      <div style="margin-top: 15px;">⭐⭐⭐⭐⭐ <span style="font-size: 14px;">(4.9/5 based on 250 reviews)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Other sections remain unchanged -->
+<!-- About, Features, Suggestions, Contact, Footer -->
+
+<!-- Suggestion Section -->
+<section id="review">
+  <h2>💡 User Reviews</h2>
+  <div class="suggestions-container" id="suggestions-list">
+    <div class="suggestion-card">
+      <img src="/static/images/sugg1.jpeg" alt="User Photo">
+      <h3>Zakir seikh</h3>
+      <p><u>Darjeeling</u></p>
+      <p>⭐ Rating: 4.5</p>
+      <p>"The toy train ride is a must! The scenic views through the hills are unforgettable.".</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static/images/sugg2.jpg" alt="User Photo">
+      <h3>Virat Kumar</h3>
+      <p><u>Ooty</u></p>
+      <p>⭐ Rating: 4.8</p>
+      <p>"The botanical garden is beautifully maintained. Perfect for a calm stroll."</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static/images/sugg3.webp" alt="User Photo">
+      <h3>Sophia Khatun</h3>
+      <p><u>Coorg</u></p>
+      <p>⭐ Rating: 4.2</p>
+      <p>"Abbey Falls is beautiful after monsoon. A short trek and totally worth it."</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static/images/sugg4.jpg" alt="User Photo">
+      <h3>Dinesh Shaw</h3>
+      <p><u>Varanasi</u></p>
+      <p>⭐ Rating: 4.7</p>
+      <p>"Ganga Aarti at Dashashwamedh Ghat gave me goosebumps. Pure bliss!"</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static/images/sugg5.avif" alt="User Photo">
+      <h3>Ganesh Kumar</h3>
+      <p><u>Kashmir</u></p>
+      <p>⭐ Rating: 4.6</p>
+      <p>"Dal Lake shikara ride was so romantic and relaxing. Don’t miss it!"</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static/images/sugg6.jpg" alt="User Photo">
+      <h3>Raj Chaterjee</h3>
+      <p><u>Kedarnath</u></p>
+      <p>⭐ Rating: 4.4</p>
+      <p>"Reach early to avoid crowd. The morning aarti is breathtaking!"</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static//images/sugg7.jpeg" alt="User Photo">
+      <h3>Rahul Gupta</h3>
+      <p><u>Goa</u></p>
+      <p>⭐ Rating: 4.9</p>
+      <p>"Explore the Portuguese architecture and try seafood at beach shacks!"</p>
+    </div>
+    <div class="suggestion-card">
+      <img src="/static/images/sugg7.jpeg" alt="User Photo">
+      <h3>Priyanshu Patra</h3>
+      <p><u>Sundarban</u></p>
+      <p>⭐ Rating: 4.3</p>
+      <p>"Great place for nature lovers. Take a guided tour for the best experience."</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  h2{
+    margin-bottom: 20px;
+    font-size: 36px;
+  font-weight: bold;
+  color: #fbeb08;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  #review {
+    text-align: center;
+    padding: 30px;
+    color: white;
+  }
+  .suggestions-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px;
+    scroll-behavior: smooth;
+  }
+  .suggestion-card {
+    background: white;
+    color: black;
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0px 4px 10px rgba(197, 158, 158, 0.2);
+    transition: transform 0.3s;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .suggestion-card:hover {
+    transform: scale(1.05);
+  }
+  .suggestion-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  u{
+    text-decoration: none;
+    color:#ff3609;
+  }
+</style>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-wrapper">
+    <div class="contact-form-card">
+      <form class="contact-form">
+        <label for="name" style="color:yellow">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required />
+
+        <label for="email" style="color:yellow">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="youremail@gmail.com" required />
+
+        <label for="message" style="color:yellow">Your Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-info-card">
+      <div class="info-block">
+        <h3>📍 Address</h3>
+        <p>Asansol Engineering College,<br> West Bengal, India</p>
+      </div>
+      <div class="info-block">
+        <h3>📞 Phone</h3>
+        <p>+91 98765 43210</p>
+      </div>
+      <div class="info-block">
+        <h3>📧 Email</h3>
+        <p>contact@tourplanner.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p>&copy; 2025 TourPlanner. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+</footer>
+
+<script>
+  function toggleSearchOptions() {
+    const stateRatingOption = document.getElementById("state-rating-option");
+    const categoryGeoOption = document.getElementById("category-geo-option");
+    const searchType = document.querySelector('input[name="search_type"]:checked').value;
+
+    const stateInput = document.getElementById("state");
+    const ratingInput = document.getElementById("rating");
+    const categoryInput = document.getElementById("category");
+    const geoTypeInput = document.getElementById("geo_type");
+
+    if (searchType === "state_rating") {
+      stateRatingOption.classList.remove("hidden");
+      categoryGeoOption.classList.add("hidden");
+
+      stateInput.required = true;
+      ratingInput.required = true;
+
+      categoryInput.required = false;
+      geoTypeInput.required = false;
+    } else {
+      stateRatingOption.classList.add("hidden");
+      categoryGeoOption.classList.remove("hidden");
+
+      stateInput.required = false;
+      ratingInput.required = false;
+
+      categoryInput.required = true;
+      geoTypeInput.required = true;
+    }
+  }
+
+  // Run once on page load to sync form state
+  window.addEventListener("DOMContentLoaded", toggleSearchOptions);
+</script>
+
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>

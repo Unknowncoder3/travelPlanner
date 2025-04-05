@@ -1,0 +1,131 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/images/b1.jpeg");
+    background-size: cover;
+  background-position:right;
+  background-repeat: no-repeat;
+}
+header {
+    background: linear-gradient(to right, #6dd5ed, #21b07e); /* blue gradient */
+    color: rgb(12, 64, 52);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 3px solid #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 2.8rem;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: 1.5px;
+}
+header h1 i
+{
+    color:#005a8a;
+}
+header p
+{
+    font-size: large;
+}
+.season-heading i {
+    color: rgb(46, 79, 245); /* Let each icon keep its original or emoji-styled color */
+}
+
+.container {
+    width: 60%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+.card {
+    background: rgba(247, 249, 249, 0.583);
+    padding: 20px;
+    margin: 40px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.card a i
+{
+    color: #09f328; /* adjust icon color */
+}
+.card:hover {
+    background: rgba(255, 255, 255, 0.683);
+    transform: scale(1.05);
+    border-radius: 10px;
+  }
+.card .card-content
+{
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
+    gap: 20px;
+}
+.card img {
+    max-width: 50%;
+    border-radius: 5px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.description {
+    flex: 1;
+    justify-content: center;
+
+}
+.button {
+    display: inline-block;
+    background: linear-gradient(140deg, rgb(14, 56, 43), rgba(21, 122, 78, 0.886)) ;
+    color: #cffddd;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.card .button:hover {
+    background:linear-gradient(140deg, rgb(6, 151, 62), rgba(0, 140, 255, 0.148)) ;
+    color:#391a58;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    i
+    {
+        color:black
+    }
+  }
+  footer {background: rgba(3, 44, 48, 0.9);
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.2);
+    border-top: 3px solid #fff;
+  }
+  footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  footer a:hover {
+    color: #3f0aff;
+    text-decoration: underline;
+  }
+  .back-btn {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .back-btn a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #3498db;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-btn a:hover {
+    background-color: #2980b9;
+  }

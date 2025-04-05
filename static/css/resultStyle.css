@@ -1,0 +1,81 @@
+/* resultStyle.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #2980b9;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.destination {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    margin: 6px 0;
+    font-size: 1rem;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.image-container {
+    flex: 1 1 200px;
+    max-width: 250px;
+    text-align: center;
+}
+
+.image-container img {
+    width: 220px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.back-btn a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #3498db;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn a:hover {
+    background-color: #2980b9;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Recommendations</title>
+  <link rel="stylesheet" href="resultStyle.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .destination {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px auto;
+      max-width: 900px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .destination h2 {
+      color: #3498db;
+      margin-bottom: 10px;
+    }
+
+    .info-item {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .image-container {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+      max-height: 150px;
+      object-fit: cover;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .back-btn a {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .back-btn a:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  {% if message %}
+    <h1>No Results Found</h1>
+    <p style="text-align: center;">{{ message }}</p>
+  {% else %}
+    <h1>{{ title }}</h1>
+
+    {% for place in results %}
+      <div class="destination">
+        <h2>📍 {{ place.Destination }}</h2>
+
+        <div class="info-item"><strong>State:</strong> {{ place.State }}</div>
+        <div class="info-item"><strong>Rating:</strong> ⭐ {{ place.Rating }}</div>
+        <div class="info-item"><strong>Description:</strong> {{ place.get('Description', 'N/A') }}</div>
+        <div class="info-item"><strong>Offbeat Places:</strong> {{ place.get('Offbeat_place', 'N/A') }}</div>
+        <div class="info-item"><strong>Local Food:</strong> {{ place.get('Local_Food', 'N/A') }}</div>
+
+        <div class="images">
+          {% if place.get('picture_place') %}
+            <div class="image-container">
+              <strong>Main Destination</strong>
+              <img src="{{ place.picture_place }}" alt="Place image">
+            </div>
+          {% endif %}
+
+          {% if place.get('picture_food') %}
+            <div class="image-container">
+              <strong>Local Food 1</strong>
+              <img src="{{ place.picture_food }}" alt="Local food image">
+            </div>
+          {% endif %}
+
+          {% if place.get('picture_food1') %}
+            <div class="image-container">
+              <strong>Local Food 2</strong>
+              <img src="{{ place.picture_food1 }}" alt="Local food image">
+            </div>
+          {% endif %}
+
+          {% if place.get('picture_offbit') %}
+            <div class="image-container">
+              <strong>Offbeat Spot 1</strong>
+              <img src="{{ place.picture_offbit }}" alt="Offbeat place image">
+            </div>
+          {% endif %}
+
+          {% if place.get('picture_offbit1') %}
+            <div class="image-container">
+              <strong>Offbeat Spot 2</strong>
+              <img src="{{ place.picture_offbit1 }}" alt="Offbeat place image">
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="back-btn">
+    <a href="/">← Back to Search</a>
+  </div>
+</body>
+</html>
